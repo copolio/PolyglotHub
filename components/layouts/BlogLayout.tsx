@@ -1,17 +1,20 @@
-import { Box, Container, Grid, GridItem, VStack } from "@chakra-ui/react";
+import { Box, Container, VStack } from "@chakra-ui/react";
 import React from "react";
-import ReactDom from "react-dom";
-import ReactMarkdown from "react-markdown/lib/react-markdown";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { dark } from "react-syntax-highlighter/dist/esm/styles/prism";
+import MarkdownPost from "../MarkdownPost";
 
 const markdown = `
-# Lorem ipsum
-
-> Lorem ipsum
-
+# Lorem ipsum dolor
 - Lorem ipsum dolor sit amet consectetur adipisicing elit.
-Consequuntur voluptates cupiditate, facilis magni illo tempore molestias aliquid temporibus voluptatum expedita nesciunt modi quaerat nulla ipsa ex corrupti dolor quas nobis.
+
+Lorem ipsum dolor sit amet consectetur adipisicing elit. Fugiat nesciunt dolor, earum architecto temporibus neque consectetur accusamus iusto ratione corporis. Molestiae alias distinctio cupiditate nostrum, delectus minus maxime ea error.
+
+~~~java
+import java.util.*;
+
+public static void main() {
+  println("hello world");
+}
+~~~
 `;
 
 export default function BlogLayout() {
@@ -20,7 +23,9 @@ export default function BlogLayout() {
       <Box bg="green" w="100%" p={6} color="white">
         <Container maxW="container.2xl">copolio</Container>
       </Box>
-      <Container maxW="container.md"></Container>
+      <Container maxW="container.md">
+        <MarkdownPost markdown={markdown} />
+      </Container>
     </VStack>
   );
 }
