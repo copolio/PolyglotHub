@@ -1,6 +1,15 @@
-import { Box, Container, VStack } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  useColorMode,
+  useColorModeValue,
+  useTheme,
+  VStack,
+} from "@chakra-ui/react";
 import React from "react";
-import MarkdownPost from "../MarkdownPost";
+import MarkdownPost from "../components/MarkdownPost";
+import BlogHeader from "./BlogHeader";
 
 const markdown = `
 # Lorem ipsum dolor
@@ -20,9 +29,7 @@ public static void main() {
 export default function BlogLayout() {
   return (
     <VStack>
-      <Box bg="green" w="100%" p={6} color="white">
-        <Container maxW="container.2xl">copolio</Container>
-      </Box>
+      <BlogHeader />
       <Container maxW="container.md">
         <MarkdownPost markdown={markdown} />
       </Container>
