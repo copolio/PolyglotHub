@@ -19,7 +19,6 @@ import React from "react";
 
 export default function BlogHeader() {
   const { colorMode, toggleColorMode } = useColorMode();
-  const { isOpen, onOpen, onClose } = useDisclosure();
 
   return (
     <Box w="100%" bg={useColorModeValue("gray.100", "gray.900")} px={4}>

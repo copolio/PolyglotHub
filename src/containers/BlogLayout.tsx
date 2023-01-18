@@ -1,17 +1,15 @@
-import { Box, Container, Flex, HStack, Stack, VStack } from "@chakra-ui/react";
+import { Box, Container } from "@chakra-ui/react";
 import React from "react";
-import MarkdownPost from "../components/MarkdownContent";
-import TableOfContent from "../components/TableOfContent";
+import MarkdownContent from "../components/MarkdownContent";
 import BlogHeader from "./BlogHeader";
-import remarkToc from "remark-toc";
 
 export default function BlogLayout({ content }: { content: string }) {
   return (
     <Box>
       <BlogHeader />
-      <Box minWidth="max-content" alignItems="center" mt="20%">
+      <Box minWidth="max-content" alignItems="center" mt="10%">
         <Container maxW="container.lg">
-          <MarkdownPost content={content} />
+          <MarkdownContent content={content} />
         </Container>
       </Box>
 

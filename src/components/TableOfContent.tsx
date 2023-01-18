@@ -1,5 +1,5 @@
+import React from "react";
 import { chakra, ListItem, OrderedList } from "@chakra-ui/react";
-import React, { useState } from "react";
 import { useScrollSpy } from "../hooks/useScrollSpy";
 
 export interface ContentHeader {
