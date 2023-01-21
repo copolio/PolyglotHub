@@ -5,15 +5,13 @@ import BlogHeader from "./BlogHeader";
 
 export default function BlogLayout({ content }: { content: string }) {
   return (
-    <Box>
+    <>
       <BlogHeader />
-      <Box minWidth="max-content" alignItems="center" mt="10%">
-        <Container maxW="container.lg">
-          <MarkdownContent content={content} />
-        </Container>
-      </Box>
+      {/* <Container minWidth="max-content" alignItems="center" mt="10%"> */}
+      <MarkdownContent content={content} />
+      {/* </Container> */}
 
-      <Box></Box>
-    </Box>
+      <Box height={1000}></Box>
+    </>
   );
 }

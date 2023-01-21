@@ -2,13 +2,12 @@ import React, { useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import docco from "react-syntax-highlighter/dist/cjs/styles/hljs/docco";
-import "github-markdown-css";
+import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs/docco";
+// import "github-markdown-css";
 import {
   Box,
   Code,
   Container,
-  Flex,
   HeadingProps,
   useColorMode,
 } from "@chakra-ui/react";
@@ -17,14 +16,7 @@ import TableOfContent from "./TableOfContent";
 export default function MarkdownContent(props: { content: string }) {
   const { colorMode } = useColorMode();
   const [titles, setTitles] = useState([]);
-
-  // useEffect(() => {
-  //   if (colorMode === "dark") {
-  //     import("github-markdown-css/github-markdown-dark.css");
-  //   } else {
-  //     import("github-markdown-css/github-markdown-light.css");
-  //   }
-  // });
+  const [mdStyle, setMdStyle] = useState();
 
   const addToTitles = ({
     children,
@@ -49,13 +41,32 @@ export default function MarkdownContent(props: { content: string }) {
 
   return (
     <>
+      {colorMode === "light" ? (
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-light.css"
+          integrity="sha512-1d9gwwC3dNW3O+lGwY8zTQrh08a41Ejci46DdzY1aQbqi/7Qr8Asp4ycWPsoD52tKXKrgu8h/lSpig1aAkvlMw=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      ) : (
+        <link
+          rel="stylesheet"
+          href="https://cdnjs.cloudflare.com/ajax/libs/github-markdown-css/5.1.0/github-markdown-dark.css"
+          integrity="sha512-q0UqxA0Ka1VxVBMFJoNfTVBYFWXqkNeF1N6WZPyLNULkF9YdpAuS/dqsN3/ClxBUzHJGrrkgLJFUlzFgXunXDQ=="
+          crossOrigin="anonymous"
+          referrerPolicy="no-referrer"
+        />
+      )}
+      <TableOfContent contentHeaders={titles} />
       <Container
+        alignItems="center"
         maxW="container.lg"
-        id="markdown-body"
-        className="markdown-body"
-        padding={10}
+        minW="min-content"
+        mt="10%"
       >
         <ReactMarkdown
+          className="markdown-body"
           components={{
             h1: addToTitles,
             h2: addToTitles,
@@ -67,17 +78,17 @@ export default function MarkdownContent(props: { content: string }) {
               const match = /language-(\w+)/.exec(className || "");
               return !inline && match ? (
                 <SyntaxHighlighter
-                  style={docco}
                   language={match[1]}
+                  style={docco}
                   PreTag="div"
                   {...props}
                 >
                   {String(children).replace(/\n$/, "")}
                 </SyntaxHighlighter>
               ) : (
-                <Code className={className} {...props}>
-                  {children}
-                </Code>
+                <SyntaxHighlighter language="textile" PreTag="div" {...props}>
+                  {String(children).replace(/\n$/, "")}
+                </SyntaxHighlighter>
               );
             },
           }}
@@ -85,25 +96,6 @@ export default function MarkdownContent(props: { content: string }) {
           {props.content}
         </ReactMarkdown>
       </Container>
-      <Box
-        as="nav"
-        aria-labelledby="toc-title"
-        width="16rem"
-        flexShrink={0}
-        display={{ base: "none", xl: "block" }}
-        position="fixed"
-        py="10"
-        pr="4"
-        top="6rem"
-        right="0"
-        fontSize="sm"
-        alignSelf="start"
-        maxHeight="calc(100vh - 8rem)"
-        overflowY="auto"
-        sx={{ overscrollBehavior: "contain" }}
-      >
-        <TableOfContent contentHeaders={titles} />
-      </Box>
     </>
   );
 }
