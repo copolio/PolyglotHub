@@ -12,6 +12,7 @@ import {
   useColorMode,
 } from "@chakra-ui/react";
 import TableOfContent from "./TableOfContent";
+import ScrollProgress from "./ScrollProgress";
 
 export default function MarkdownContent(props: { content: string }) {
   const { colorMode } = useColorMode();
@@ -41,6 +42,9 @@ export default function MarkdownContent(props: { content: string }) {
 
   return (
     <>
+      <Box position="fixed">
+        <ScrollProgress />
+      </Box>
       {colorMode === "light" ? (
         <link
           rel="stylesheet"
