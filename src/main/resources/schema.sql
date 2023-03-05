@@ -1,0 +1,8 @@
+create table EXCEL_FILE
+(
+    ID               SERIAL,
+    FILE_PATH        VARCHAR,
+    CONDITION_ID     INTEGER NOT NULL,
+    CREATE_DATE_TIME TIMESTAMP,
+    UPDATE_DATE_TIME TIMESTAMP
+);
