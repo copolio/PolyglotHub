@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from "react";
+// @ts-nocheck
+
+import React, { ReactNode, useEffect, useState } from "react";
 import ReactMarkdown from "react-markdown";
 
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import { docco } from "react-syntax-highlighter/dist/cjs/styles/hljs/docco";
+import docco from "react-syntax-highlighter/dist/cjs/styles/hljs/docco";
 // import "github-markdown-css";
 import {
   Box,

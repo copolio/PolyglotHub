@@ -5,7 +5,7 @@ function blog({ content }: { content: string }) {
   return <BlogLayout content={content}></BlogLayout>;
 }
 
-blog.getInitialProps = async (ctx) => {
+blog.getInitialProps = async (ctx: any) => {
   const res = await fetch("http://localhost:3000/sample.md");
   const resData = await res.text();
 
